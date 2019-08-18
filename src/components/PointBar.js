@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import Point from './Point'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
@@ -42,29 +42,37 @@ const PointsList = styled.ul`
 `
 
 const PointBar = props => {
-	const [newPointName, setNewPointName] = useState('')
+	const [pointInputValue, setPointInputValue] = useState('')
+	const inputRef = useRef(null)
 	const { points, onDelPoint, onAddPoint, onReorder } = props
 	const onDragEnd = event => {
 		console.log(event)
 		if (!event.destination) return
 		onReorder(event.source.index, event.destination.index)
 	}
+	const clearInput = () => {
+		inputRef.current.value = ''
+		setPointInputValue('')
+	}
 	return (
 		<DragDropContext onDragEnd={onDragEnd}>
 			<Wrapper>
 				<InputPointWrapper>
 					<Input
-						onChange={e => setNewPointName(e.target.value)}
+						onChange={e => setPointInputValue(e.target.value)}
 						onKeyPress={e => {
 							if (e.charCode === 13) {
-								onAddPoint(newPointName)
+								onAddPoint(pointInputValue)
+								clearInput()
 							}
 						}}
 						placeholder={'Point'}
+						ref={inputRef}
 					/>
 					<AddButton
 						onClick={() => {
-							onAddPoint(newPointName)
+							onAddPoint(pointInputValue)
+							clearInput()
 						}}
 					>
 						>
