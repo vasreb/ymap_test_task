@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Draggable } from 'react-beautiful-dnd'
 
 const PointItem = styled.li`
 	background-color: #e5e5e5;
@@ -24,15 +25,29 @@ const PointName = styled.h3`
 
 const PointClose = styled.button`
 	border: none;
+	margin-left: auto;
+	border-radius: 10px;
 `
 
 const Point = props => {
-	const { name, onDel } = props
+	const {
+		data: { id, name },
+		onDel,
+		index,
+	} = props
 	return (
-		<PointItem>
-			<PointName>{name}</PointName>
-			<PointClose onClick={onDel}>X</PointClose>
-		</PointItem>
+		<Draggable draggableId={id} index={index}>
+			{(provided, snapshot) => (
+				<PointItem
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+				>
+					<PointName>{name}</PointName>
+					<PointClose onClick={() => onDel(id)}>X</PointClose>
+				</PointItem>
+			)}
+		</Draggable>
 	)
 }
 

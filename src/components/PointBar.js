@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Point from './Point'
-import addPoint from '../actions/addPoint'
-import delPoint from '../actions/delPoint'
-import reorder from '../utilities/reorder'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import reorderPoints from '../actions/reorderPoints'
-
-import { connect } from 'react-redux'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 const Wrapper = styled.div`
 	width: 20%;
@@ -43,6 +37,8 @@ const PointsList = styled.ul`
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	width: 100%;
+	overflow: auto;
 `
 
 const PointBar = props => {
@@ -78,20 +74,12 @@ const PointBar = props => {
 					{(provided, snapshot) => (
 						<PointsList ref={provided.innerRef} {...provided.droppableProps}>
 							{points.map((point, index) => (
-								<Draggable key={point.id} draggableId={point.id} index={index}>
-									{(provided, snapshot) => (
-										<li
-											ref={provided.innerRef}
-											{...provided.draggableProps}
-											{...provided.dragHandleProps}
-										>
-											<Point
-												name={point.name}
-												onDel={() => onDelPoint(point.id)}
-											/>
-										</li>
-									)}
-								</Draggable>
+								<Point
+									key={point.id}
+									data={point}
+									index={index}
+									onDel={onDelPoint}
+								/>
 							))}
 							{provided.placeholder}
 						</PointsList>
@@ -102,43 +90,4 @@ const PointBar = props => {
 	)
 }
 
-const mapStateToProps = state => {
-	const { points } = state
-	return {
-		points,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	const onDelPoint = id => {
-		dispatch(delPoint(id))
-	}
-	const onAddPoint = name => {
-		dispatch(addPoint(name ? name : 'Point'))
-	}
-	return {
-		onDelPoint,
-		onAddPoint,
-		dispatch,
-	}
-}
-
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-	const { points } = stateProps
-	const { dispatch } = dispatchProps
-	const onReorder = (source, destination) => {
-		dispatch(reorderPoints(reorder(points, source, destination)))
-	}
-	return {
-		...stateProps,
-		...dispatchProps,
-		...ownProps,
-		onReorder,
-	}
-}
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-	mergeProps
-)(PointBar)
+export default PointBar
