@@ -1,4 +1,4 @@
-import reorder from './reorder'
+import reorder from '../../utilities/reorder'
 
 describe('reorder test', () => {
 	const arr = [
