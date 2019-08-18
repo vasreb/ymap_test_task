@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/App'
+import { Provider } from 'react-redux'
+import { Normalize } from 'styled-normalize'
+import store from './store'
+import './index.css'
+import { YMaps } from 'react-yandex-maps'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Root = () => (
+	<Provider store={store}>
+		<YMaps>
+			<Normalize />
+			<App />
+		</YMaps>
+	</Provider>
+)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(<Root />, document.getElementById('root'))
