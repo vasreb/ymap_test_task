@@ -1,5 +1,7 @@
+import * as ActionNames from '../constants/ActionNames'
+
 const changeCurrentCenter = coords => ({
-	type: 'CHANGE_CURRENT_CENTER',
+	type: ActionNames.CHANGE_CURRENT_CENTER,
 	coords,
 })
 

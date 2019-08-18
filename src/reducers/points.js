@@ -1,6 +1,8 @@
+import * as ActionNames from '../constants/ActionNames'
+
 const points = (state = [], action) => {
 	switch (action.type) {
-		case 'ADD_POINT':
+		case ActionNames.ADD_POINT:
 			const { id, coords, name } = action
 			return [
 				...state,
@@ -10,11 +12,11 @@ const points = (state = [], action) => {
 					name,
 				},
 			]
-		case 'DEL_POINT':
+		case ActionNames.DEL_POINT:
 			return state.filter(point => point.id !== action.id)
-		case 'REORDER_POINTS':
+		case ActionNames.REORDER_POINTS:
 			return [...action.payload]
-		case 'CHANGE_POINT_COORDS':
+		case ActionNames.CHANGE_POINT_COORDS:
 			const index = state.findIndex(point => point.id === action.id)
 			const newState = [...state]
 			newState[index].coords = action.coords

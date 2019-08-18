@@ -1,5 +1,7 @@
+import * as ActionNames from '../constants/ActionNames'
+
 const changePointCoords = (id, coords) => ({
-	type: 'CHANGE_POINT_COORDS',
+	type: ActionNames.CHANGE_POINT_COORDS,
 	id,
 	coords,
 })

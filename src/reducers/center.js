@@ -1,7 +1,9 @@
 import defaultCoords from '../constants/defCoords'
+import * as ActionNames from '../constants/ActionNames'
+
 const center = (state = defaultCoords, action) => {
 	switch (action.type) {
-		case 'CHANGE_CURRENT_CENTER':
+		case ActionNames.CHANGE_CURRENT_CENTER:
 			return [...action.coords]
 		default:
 			return state

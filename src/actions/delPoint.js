@@ -1,5 +1,7 @@
+import * as ActionNames from '../constants/ActionNames'
+
 const delPoint = id => ({
-	type: 'DEL_POINT',
+	type: ActionNames.DEL_POINT,
 	id,
 })
 

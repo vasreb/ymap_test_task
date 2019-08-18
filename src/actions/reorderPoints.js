@@ -1,5 +1,7 @@
+import * as ActionNames from '../constants/ActionNames'
+
 const reorderPoints = newOrder => ({
-	type: 'REORDER_POINTS',
+	type: ActionNames.REORDER_POINTS,
 	payload: newOrder,
 })
 

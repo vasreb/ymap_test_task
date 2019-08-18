@@ -1,7 +1,8 @@
 import store from '../store'
+import * as ActionNames from '../constants/ActionNames'
 
 const addPoint = name => ({
-	type: 'ADD_POINT',
+	type: ActionNames.ADD_POINT,
 	id: Date.now(),
 	coords: store.getState().center,
 	name,
