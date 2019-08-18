@@ -57,7 +57,7 @@ const PointBar = props => {
 						onChange={e => setNewPointName(e.target.value)}
 						onKeyPress={e => {
 							if (e.charCode === 13) {
-								onAddPoint(e.target.value)
+								onAddPoint(newPointName)
 							}
 						}}
 						placeholder={'Point'}
