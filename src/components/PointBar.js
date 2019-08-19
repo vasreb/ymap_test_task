@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Point from './Point'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
@@ -102,3 +103,16 @@ const PointBar = props => {
 }
 
 export default PointBar
+
+PointBar.propTypes = {
+	points: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.number,
+			coords: PropTypes.arrayOf(PropTypes.number),
+			name: PropTypes.string.isRequired,
+		})
+	),
+	onDelPoint: PropTypes.func.isRequired,
+	onAddPoint: PropTypes.func.isRequired,
+	onReorder: PropTypes.func.isRequired,
+}

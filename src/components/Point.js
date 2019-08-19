@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 
@@ -52,3 +53,12 @@ const Point = props => {
 }
 
 export default Point
+
+Point.propTypes = {
+	data: PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+	}).isRequired,
+	onDel: PropTypes.func.isRequired,
+	index: PropTypes.number.isRequired,
+}

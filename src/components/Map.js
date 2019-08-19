@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Map as YMap, Polyline } from 'react-yandex-maps'
 import defaultCoords from '../constants/defCoords'
@@ -33,3 +34,9 @@ const Map = props => {
 }
 
 export default Map
+
+Map.propTypes = {
+	placemarks: PropTypes.arrayOf(PropTypes.object).isRequired,
+	changeCenter: PropTypes.func.isRequired,
+	polylineCoords: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+}
