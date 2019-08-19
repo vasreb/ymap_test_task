@@ -10,15 +10,18 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	min-width: 220px;
+	padding: 0px 5px;
 `
 const InputPointWrapper = styled.div`
 	margin-top: 10px;
 	display: flex;
 	flex-direction: row;
+	width: 100%;
 `
 
 const Input = styled.input`
-	width: 90%;
+	width: 100%;
 	height: 30px;
 	border-radius: 10px;
 	border: 1px solid #e5e5e5;
